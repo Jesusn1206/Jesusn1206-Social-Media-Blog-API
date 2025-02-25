@@ -56,8 +56,7 @@ public class SocialMediaController {
 
     public void getMessagesFromIDHandler(Context ctx){
         int messageId = Integer.parseInt(ctx.pathParam("message_id"));
-        List<Message> messages = messageService.getMessagesFromID(messageId);
-        ctx.json(messages);
+        ctx.json(messageService.getMessagesFromID(messageId));
     }
 
     private void postAccountHandler(Context ctx) throws JsonProcessingException{
@@ -93,7 +92,16 @@ public class SocialMediaController {
         }
     }
 
-    
+    /*
+     * Errors to be fixed:
+     * 
+     * testcases:
+     * createMessageSuccessful()
+     * creating a successful message
+     * 
+     * retrieveMessagedbyID()
+     * case where message not found
+     */
     
 
 

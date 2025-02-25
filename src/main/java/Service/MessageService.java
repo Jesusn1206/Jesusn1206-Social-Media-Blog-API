@@ -24,12 +24,8 @@ public class MessageService {
         return messageDAO.getAllMessages();
     }
 
-    public List<Message> getMessagesFromID(int message_id){
-        if(messageDAO.getMessagesFromID(message_id) != null){
-            return messageDAO.getMessagesFromID(message_id);
-        }
-        return null;
-        
+    public Message getMessagesFromID(int message_id){
+        return messageDAO.getMessagesFromID(message_id);
     }
 
     public Message createMessage(Message message){
