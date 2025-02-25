@@ -20,5 +20,12 @@ public class AccountService {
         }
         return null;
     }
+
+    public Account loginAccount(Account account){
+        if(accountDAO.getAccountbyUser(account.getUsername()) != null){
+            return accountDAO.insertAccount(account);
+        }
+        return null;
+    }
     
 }

@@ -38,7 +38,7 @@ public class AccountDAO {
 
             ResultSet rs = preparedStatement.executeQuery();
             while(rs.next()){
-                Account account = new Account(rs.getString("username"), rs.getString("password"));
+                Account account = new Account(rs.getInt("account_id"), rs.getString("username"), rs.getString("password"));
                 return account;
             }
         }catch(SQLException e){
