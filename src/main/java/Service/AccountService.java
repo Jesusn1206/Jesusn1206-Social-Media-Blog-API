@@ -22,8 +22,9 @@ public class AccountService {
     }
 
     public Account loginAccount(Account account){
-        if(accountDAO.getAccountbyUser(account.getUsername()) != null){
-            return accountDAO.insertAccount(account);
+        Account checker = accountDAO.getAccountbyUser(account.getUsername());
+        if(checker != null && checker.getPassword().equals(account.getPassword())){
+            return checker;
         }
         return null;
     }
