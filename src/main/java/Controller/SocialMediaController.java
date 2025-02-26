@@ -56,7 +56,13 @@ public class SocialMediaController {
 
     public void getMessagesFromIDHandler(Context ctx){
         int messageId = Integer.parseInt(ctx.pathParam("message_id"));
-        ctx.json(messageService.getMessagesFromID(messageId));
+        Message addedMessage = messageService.getMessagesFromID(messageId);
+        if(addedMessage != null){
+            ctx.json(messageService.getMessagesFromID(messageId));
+        }else{
+            ctx.status(200);
+        }
+        
     }
 
     private void postAccountHandler(Context ctx) throws JsonProcessingException{

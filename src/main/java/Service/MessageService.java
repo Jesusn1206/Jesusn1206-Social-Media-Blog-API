@@ -29,7 +29,7 @@ public class MessageService {
     }
 
     public Message createMessage(Message message){
-        if(message.getMessage_text().length() < 255 && message.getMessage_text().length() > 0 && accountDAO.getAccountbyID(message.getMessage_id()) != null){
+        if(message.getMessage_text().length() < 255 && message.getMessage_text().length() > 0 && accountDAO.getAccountbyID(message.getPosted_by()) != null){
             return messageDAO.createNewMessage(message);
         }
         return null;
