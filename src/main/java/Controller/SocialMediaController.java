@@ -98,17 +98,7 @@ public class SocialMediaController {
         }
     }
 
-    /*
-     * Errors to be fixed:
-     * 
-     * testcases:
-     * createMessageSuccessful()
-     * creating a successful message
-     * 
-     * retrieveMessagedbyID()
-     * case where message not found
-     */
-    
+   
 
 
 }
