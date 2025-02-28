@@ -44,6 +44,25 @@ public class MessageDAO {
         return null;
     }
 
+    public List<Message> getMessagesFromUser(int posted_by){
+        Connection connection = ConnectionUtil.getConnection();
+        List<Message> messages = new ArrayList<>();
+
+        try{
+            String sql = "SELECT * FROM Message WHERE posted_by = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, posted_by);           
+            ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next()){
+                Message message = new Message(rs.getInt("message_id"), rs.getInt("posted_by"), rs.getString("message_text"), rs.getLong("time_posted_epoch"));
+                messages.add(message);
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return messages;
+    }
+
     public Message createNewMessage(Message message){
         Connection connection = ConnectionUtil.getConnection();
         try{
@@ -88,5 +107,34 @@ public class MessageDAO {
         }
         return null;
     }
+
+    public Message updateMessageFromID(Message message){
+        Connection connection = ConnectionUtil.getConnection();
+        try{
+            String sql = "UPDATE Message SET message_text = ? WHERE message_id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, message.getMessage_text());     
+            preparedStatement.setInt(2, message.getMessage_id());      
+            int update_value = preparedStatement.executeUpdate();
+
+            
+
+            if(update_value == 1){
+                Message messagerv = getMessagesFromID(message.getMessage_id());
+                return messagerv;
+            }
+
+
+            // while(rs.next()){
+            //     //Message messagerv = new Message(rs.getInt("message_id"), rs.getInt("posted_by"), rs.getString("message_text"), rs.getLong("time_posted_epoch"));
+            //     return messagerv;
+            // }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
 }
+
+
 
